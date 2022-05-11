@@ -1,0 +1,45 @@
+<mat-toolbar class="mat-elevation-z8">
+<button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()" (click)="onToggleSidenav()">
+    <mat-icon *ngIf="!sidenav.opened">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+      close
+    </mat-icon>
+</button>
+  <div class="vencomats">
+    <p>
+      Vencomats
+    </p>
+  </div>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav class="mat-elevation-z8" mode="over">
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" (click)="goToHomePage()" *ngIf="rol === '1'">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </button>
+    <button mat-button class="menu-button" (click)="goToFilterPage()" *ngIf="rol === '1'">
+      <mat-icon>home</mat-icon>
+      <span>Filtros</span>
+    </button>
+    <button mat-button class="menu-button" (click)="goToLoginPage()" *ngIf="rol === '1'">
+      <mat-icon>home</mat-icon>
+      <span>Iniciar sesion</span>
+    </button>
+    <button mat-button class="menu-button" (click)="goToRegisterPage()" *ngIf="rol === '1'">
+      <mat-icon>home</mat-icon>
+      <span>Registrarse</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Salir</span>
+    </button>
+  </mat-sidenav>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>
