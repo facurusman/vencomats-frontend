@@ -1,44 +1,116 @@
 <mat-toolbar class="mat-elevation-z8">
-<button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()" (click)="onToggleSidenav()">
-    <mat-icon *ngIf="!sidenav.opened">
-      menu
-    </mat-icon>
-    <mat-icon *ngIf="sidenav.opened">
-      close
-    </mat-icon>
-</button>
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()" (click)="onToggleSidenav()" style="display: flex; justify-content:center; align-self: center;">
+      <mat-icon *ngIf="!sidenav.opened">
+        menu
+      </mat-icon>
+      <mat-icon *ngIf="sidenav.opened">
+        close
+      </mat-icon>
+  </button>
   <div class="vencomats">
-    <p>
-      Vencomats
-    </p>
+    <a class="logo" href="index.html">
+      <img src="../../../assets/images/Logo - Vencomats.png" alt="VENCOMATS" title="VENCOMATS ARGENTINA">
+    </a>
   </div>
+
+
+
+  <div class="buscador">
+    <div class="buscador-child">
+      <mat-form-field class="example-full-width">
+        <input type="text"
+        placeholder="Buscar en Vencomats"
+        aria-label="Buscador"
+        matInput
+        [formControl]="myControl"
+        [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <svg xmlns="http://www.w3.org/2000/svg" class="input-icon" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+      </svg>
+  </div >
+</div>
+
+
+
+<ul class="filtros_btn" >
+  <br>
+  <li><a href="#" style="position: relative; left: 0px; top: 9px;"> FILTROS <br></a>
+      <br>
+      <ul class="desplegable" >
+          <li>
+                 <a href="#"> Materiales </a>
+                 <br>
+                 <ul class="filtros_materiales">
+                     <mat-selection-list #shoes [multiple]="false">
+                          <mat-list-option *ngFor="let material of listaMateriales" [value]="material">
+                              {{material}}
+                          </mat-list-option>
+                      </mat-selection-list>
+                 </ul>
+          </li>
+             <li><a href="#"> Productos </a>
+              <ul class="filtros_productos">
+                  <mat-selection-list #shoes [multiple]="false">
+                      <mat-list-option *ngFor="let producto of listaProductos" [value]="producto">
+                          {{producto}}
+                      </mat-list-option>
+                  </mat-selection-list>
+              </ul>
+          </li>
+             <li><a href="#"> Servicios </a>
+              <ul class="filtros_servicios">
+                  <mat-selection-list #shoes [multiple]="false">
+                      <mat-list-option *ngFor="let servicio of listaServicios" [value]="servicio">
+                          {{servicio}}
+                      </mat-list-option>
+                  </mat-selection-list>
+              </ul>
+          </li>
+         </ul>
+  </li>
+</ul>
+
+
+
+
+
+
+
+
 </mat-toolbar>
+
 <mat-sidenav-container>
   <mat-sidenav #sidenav class="mat-elevation-z8" mode="over">
     <mat-divider></mat-divider>
 
     <button mat-button class="menu-button" (click)="goToHomePage()" *ngIf="rol === '1'">
-      <mat-icon>home</mat-icon>
-      <span>Home</span>
+      <mat-icon>add_to_photos</mat-icon>
+      <span>Publicar</span>
     </button>
     <button mat-button class="menu-button" (click)="goToFilterPage()" *ngIf="rol === '1'">
-      <mat-icon>home</mat-icon>
-      <span>Filtros</span>
+      <mat-icon>verified_user</mat-icon>
+      <span>Solicitar Verificacion</span>
     </button>
     <button mat-button class="menu-button" (click)="goToLoginPage()" *ngIf="rol === '1'">
-      <mat-icon>home</mat-icon>
-      <span>Iniciar sesion</span>
+      <mat-icon>supervised_user_circle</mat-icon>
+      <span>Perfil</span>
     </button>
     <button mat-button class="menu-button" (click)="goToRegisterPage()" *ngIf="rol === '1'">
-      <mat-icon>home</mat-icon>
-      <span>Registrarse</span>
+      <mat-icon>invert_colors</mat-icon>
+      <span>Tema</span>
     </button>
 
     <mat-divider></mat-divider>
 
     <button mat-button class="menu-button" (click)="logout()">
       <mat-icon>exit_to_app</mat-icon>
-      <span>Salir</span>
+      <span>Logout</span>
     </button>
   </mat-sidenav>
   <router-outlet></router-outlet>
